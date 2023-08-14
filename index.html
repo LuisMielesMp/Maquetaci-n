@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Matriculación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        section {
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .interface-heading {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .interface-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .interface-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .small-image {
+            max-width: 300px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+		
+		 /* Diseño mejorado */
+        form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+		
+		.modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+        }
+
+        .modal h3 {
+            margin-top: 0;
+        }
+		   .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
+		
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Matriculación</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#registro">Registro de Usuarios</a></li>
+                <li><a href="#gestion-cursos">Gestión de Cursos</a></li>
+                <li><a href="#matriculacion">Matriculación en Cursos</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Interface de Registro de Usuarios -->
+    <section id="registro" class="container">
+        <h2 class="interface-heading">Registro de Usuarios</h2>
+        <p class="interface-description">Permite a estudiantes, profesores y personal administrativo registrarse para acceder a sus funciones correspondientes.</p>
+        <img class="interface-image small-image" src="https://cdn.thediplomatinspain.com/wp-content/uploads/2022/08/office-gc16ff69a9_1920.jpg" alt="Registro de Usuarios">
+    </section>
+
+ <section id="registro" class="container">
+      
+        <form id="registro-form">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">Registrarse</button>
+        </form>
+        <div id="registro-mensaje"></div>
+    </section>
+ <script>
+        // Lógica para el formulario de registro
+        document.getElementById('registro-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            const mensaje = document.getElementById('registro-mensaje');
+
+            // Simulación de registro exitoso
+            mensaje.innerHTML = `Registro exitoso para ${nombre}`;
+        });
+    </script>
+
+<!-- Interface de Gestión de Cursos -->
+<section id="gestion-cursos" class="container">
+    <h2 class="interface-heading">Gestión de Cursos</h2>
+    <p class="interface-description">Administradores pueden añadir, editar y eliminar cursos, además de asignar profesores a los cursos.</p>
+    <img class="interface-image small-image" src="https://prod-discovery.edx-cdn.org/media/course/image/2dcbd011-56c5-4e4a-80eb-aa2a080c1164-060866c24c0b.small.png" alt="Gestión de Cursos">
+    <button class="button manage-courses-button">Gestión de Cursos</button>
+</section>
+
+<!-- Modal para la gestión de cursos -->
+<div class="modal" id="manage-courses-modal">
+    <div class="modal-content">
+        <h3>Cursos Disponibles</h3>
+        <ul>
+            <li>Curso de Matemáticas</li>
+            <li>Curso de Historia</li>
+            <li>Curso de Ciencias</li>
+            <li>Curso de Literatura</li>
+            <li>Curso de Arte</li>
+            <li>Curso de Música</li>
+        </ul>
+        <button id="close-modal-button">Cerrar</button>
+    </div>
+</div>
+
+
+<!-- Interface de Matriculación en Cursos -->
+<section id="matriculacion" class="container">
+    <h2 class="interface-heading">Matriculación en Cursos</h2>
+    <p class="interface-description">Estudiantes pueden buscar y matricularse en cursos disponibles, cumpliendo requisitos previos necesarios.</p>
+    <img class="interface-image small-image" src="https://dcidte.com/moodle30/pluginfile.php/87/course/overviewfiles/excel6.jpg" alt="Matriculación en Cursos">
+<br>
+<br>  
+  <button class="button enroll-button" id="show-enroll-modal-button">Matricularme</button>
+	<!-- Botón para Gestión de Horarios -->
+<button class="button manage-schedule-button" id="show-schedule-modal-button">Gestión de Horarios</button>
+<button class="button generate-reports-button" id="show-reports-modal-button">Generación de Listas y Reportes</button>
+<!-- Botón para Gestión de Pagos -->
+<button class="button manage-payments-button" id="show-payments-modal-button">Gestión de Pagos</button>
+<!-- Botón para Comunicación -->
+<button class="button communication-button" id="show-communication-modal-button">Comunicación</button>
+<!-- Botón para Gestión de Requisitos Previos -->
+<button class="button manage-prerequisites-button" id="show-prerequisites-modal-button">Gestión de Requisitos Previos</button><br>
+
+<br>
+
+<!-- Botón para Gestión de Listas de Espera -->
+<button class="button manage-waitlists-button" id="show-waitlists-modal-button">Gestión de Listas de Espera</button>
+
+
+</section>
+
+<!-- Modal para matriculación -->
+<div class="modal" id="enroll-modal">
+    <div class="modal-content">
+        <h3>Matriculación en Cursos</h3>
+        <label for="course-select">Seleccione un curso:</label>
+        <select id="course-select">
+            <option value="matematicas">Curso de Matemáticas</option>
+            <option value="historia">Curso de Historia</option>
+            <option value="ciencias">Curso de Ciencias</option>
+            <option value="literatura">Curso de Literatura</option>
+            <option value="arte">Curso de Arte</option>
+            <option value="musica">Curso de Música</option>
+        </select>
+        <label for="professor-select">Seleccione un profesor:</label>
+        <select id="professor-select">
+            <option value="juan" data-subjects="matematicas">Juan Pérez (Matemáticas)</option>
+            <option value="maria" data-subjects="matematicas">María García (Matemáticas)</option>
+            <option value="carlos" data-subjects="matematicas">Carlos Rodríguez (Matemáticas)</option>
+            <option value="ana" data-subjects="matematicas">Ana Martínez (Matemáticas)</option>
+            <option value="luis" data-subjects="matematicas">Luis Sánchez (Matemáticas)</option>
+
+            <option value="sofia" data-subjects="historia">Sofía González (Historia)</option>
+            <option value="jose" data-subjects="historia">José Martínez (Historia)</option>
+            <option value="ana_historia" data-subjects="historia">Ana Pérez (Historia)</option>
+            <option value="manuel" data-subjects="historia">Manuel Soto (Historia)</option>
+            <option value="marta" data-subjects="historia">Marta Fernández (Historia)</option>
+
+            <option value="carla" data-subjects="ciencias">Carla Rodríguez (Ciencias)</option>
+            <option value="lucas" data-subjects="ciencias">Lucas Pérez (Ciencias)</option>
+            <option value="isabel" data-subjects="ciencias">Isabel López (Ciencias)</option>
+            <option value="jorge" data-subjects="ciencias">Jorge Martínez (Ciencias)</option>
+            <option value="ana_ciencias" data-subjects="ciencias">Ana Ramírez (Ciencias)</option>
+
+            <option value="luisa" data-subjects="literatura">Luisa Sánchez (Literatura)</option>
+            <option value="david" data-subjects="literatura">David Pérez (Literatura)</option>
+            <option value="andrea" data-subjects="literatura">Andrea Martínez (Literatura)</option>
+            <option value="felipe" data-subjects="literatura">Felipe López (Literatura)</option>
+            <option value="natalia" data-subjects="literatura">Natalia Ramírez (Literatura)</option>
+
+            <option value="roberto" data-subjects="arte">Roberto Fernández (Arte)</option>
+            <option value="clara" data-subjects="arte">Clara García (Arte)</option>
+            <option value="eduardo" data-subjects="arte">Eduardo Pérez (Arte)</option>
+            <option value="monica" data-subjects="arte">Mónica Martínez (Arte)</option>
+            <option value="javier" data-subjects="arte">Javier Soto (Arte)</option>
+
+            <option value="fernanda" data-subjects="musica">Fernanda Rodríguez (Música)</option>
+            <option value="pablo_musica" data-subjects="musica">Pablo González (Música)</option>
+            <option value="valeria" data-subjects="musica">Valeria Martínez (Música)</option>
+            <option value="andres" data-subjects="musica">Andrés López (Música)</option>
+            <option value="diana" data-subjects="musica">Diana Ramírez (Música)</option>
+            <!-- Agrega más opciones de profesores aquí -->
+        </select>
+        <button class="button" id="enroll-button">Matricular</button>
+        <button class="button" id="close-enroll-modal-button">Cerrar</button>
+        <p id="enroll-success-message" style="display: none; color: green; font-weight: bold;">Matrícula Exitosa</p>
+    </div>
+</div>
+
+<script>
+    const showEnrollModalButton = document.getElementById('show-enroll-modal-button');
+    const enrollModal = document.getElementById('enroll-modal');
+    const closeEnrollModalButton = document.getElementById('close-enroll-modal-button');
+    const enrollButton = document.getElementById('enroll-button');
+    const enrollSuccessMessage = document.getElementById('enroll-success-message');
+    const courseSelect = document.getElementById('course-select');
+    const professorSelect = document.getElementById('professor-select');
+    
+    showEnrollModalButton.addEventListener('click', () => {
+        enrollModal.style.display = 'flex';
+    });
+
+    closeEnrollModalButton.addEventListener('click', () => {
+        enrollModal.style.display = 'none';
+        enrollSuccessMessage.style.display = 'none';
+    });
+
+    enrollButton.addEventListener('click', () => {
+        const selectedCourse = courseSelect.value;
+        const selectedProfessor = professorSelect.value;
+
+        // Obtener la materia que imparte el profesor seleccionado
+        const professorSubjects = professorSelect.options[professorSelect.selectedIndex].getAttribute('data-subjects').split(',');
+
+        // Comprobar si el profesor imparte la materia del curso seleccionado
+        if (professorSubjects.includes(selectedCourse)) {
+            enrollSuccessMessage.style.display = 'block';
+        } else {
+            alert('El profesor seleccionado no imparte esta materia.');
+        }
+    });
+</script>
+
+
+
+<<!-- Modal para la gestión de horarios -->
+<div class="modal" id="schedule-modal">
+    <div class="modal-content">
+        <h3>Gestión de Horarios</h3>
+        <p>Seleccione los cursos y horarios para generar su horario:</p>
+        <form id="schedule-form">
+            <label for="selected-courses">Cursos:</label>
+            <select id="selected-courses" multiple>
+                <option value="matematicas">Curso de Matemáticas</option>
+                <option value="historia">Curso de Historia</option>
+                <option value="ciencias">Curso de Ciencias</option>
+                <option value="literatura">Curso de Literatura</option>
+                <option value="arte">Curso de Arte</option>
+                <option value="musica">Curso de Música</option>
+                <!-- Agrega más opciones de cursos aquí -->
+            </select>
+            <label for="day-select">Día:</label>
+            <select id="day-select">
+                <option value="lunes">Lunes</option>
+                <option value="martes">Martes</option>
+                <option value="miercoles">Miércoles</option>
+                <option value="jueves">Jueves</option>
+                <option value="viernes">Viernes</option>
+            </select>
+            <label for="time-select">Hora:</label>
+            <select id="time-select">
+                <option value="8-10">8:00 - 10:00</option>
+                <option value="10-12">10:00 - 12:00</option>
+                <option value="14-16">14:00 - 16:00</option>
+                <option value="16-18">16:00 - 18:00</option>
+            </select>
+            <button class="button" id="generate-schedule-button">Generar Horario</button>
+            <button class="button" id="close-schedule-modal-button">Cerrar</button>
+            <div id="schedule-output" style="display: none; margin-top: 10px;">
+                <h4>Horario Generado:</h4>
+                <ul id="schedule-list"></ul>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const showScheduleModalButton = document.getElementById('show-schedule-modal-button');
+    const scheduleModal = document.getElementById('schedule-modal');
+    const closeScheduleModalButton = document.getElementById('close-schedule-modal-button');
+    const generateScheduleButton = document.getElementById('generate-schedule-button');
+    const selectedCourses = document.getElementById('selected-courses');
+    const daySelect = document.getElementById('day-select');
+    const timeSelect = document.getElementById('time-select');
+    const scheduleOutput = document.getElementById('schedule-output');
+    const scheduleList = document.getElementById('schedule-list');
+
+    showScheduleModalButton.addEventListener('click', () => {
+        scheduleModal.style.display = 'flex';
+    });
+
+    closeScheduleModalButton.addEventListener('click', () => {
+        scheduleModal.style.display = 'none';
+        scheduleOutput.style.display = 'none';
+        scheduleList.innerHTML = '';
+    });
+
+    generateScheduleButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const selectedCourseOptions = selectedCourses.selectedOptions;
+        const selectedCourseNames = Array.from(selectedCourseOptions).map(option => option.value);
+        const selectedDay = daySelect.value;
+        const selectedTime = timeSelect.value;
+
+        // Aquí puedes agregar la lógica para generar el horario basado en los cursos seleccionados,
+        // la disponibilidad del estudiante, los días y las horas seleccionadas.
+        // Por ahora, solo mostraremos los cursos seleccionados, el día y la hora.
+        const scheduleInfo = selectedCourseNames.map(course => `${course} - ${selectedDay} ${selectedTime}`);
+        scheduleList.innerHTML = scheduleInfo.map(info => `<li>${info}</li>`).join('');
+        scheduleOutput.style.display = 'block';
+    });
+</script>
+
+<!-- Modal para la generación de listas y reportes -->
+<div class="modal" id="reports-modal">
+    <div class="modal-content">
+        <h3>Generación de Listas y Reportes</h3>
+        <p>Seleccione el curso para generar la lista de estudiantes matriculados y el reporte de matrícula:</p>
+        <form id="reports-form">
+            <label for="selected-course">Curso:</label>
+            <select id="selected-course">
+                <option value="matematicas">Curso de Matemáticas</option>
+                <option value="historia">Curso de Historia</option>
+                <option value="ciencias">Curso de Ciencias</option>
+                <option value="literatura">Curso de Literatura</option>
+                <option value="arte">Curso de Arte</option>
+                <option value="musica">Curso de Música</option>
+                <!-- Agrega más opciones de cursos aquí -->
+            </select>
+            <button class="button" id="generate-reports-button">Generar Listas y Reportes</button>
+            <button class="button" id="close-reports-modal-button">Cerrar</button>
+            <div id="reports-output" style="display: none; margin-top: 10px;">
+                <h4>Lista de Estudiantes Matriculados:</h4>
+                <ul id="students-list"></ul>
+                <h4>Reporte de Matrícula:</h4>
+                <p>Descargar reporte aquí...</p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const showReportsModalButton = document.getElementById('show-reports-modal-button');
+    const reportsModal = document.getElementById('reports-modal');
+    const closeReportsModalButton = document.getElementById('close-reports-modal-button');
+    const generateReportsButton = document.getElementById('generate-reports-button');
+    const selectedCourse = document.getElementById('selected-course');
+    const reportsOutput = document.getElementById('reports-output');
+    const studentsList = document.getElementById('students-list');
+
+    showReportsModalButton.addEventListener('click', () => {
+        reportsModal.style.display = 'flex';
+    });
+
+    closeReportsModalButton.addEventListener('click', () => {
+        reportsModal.style.display = 'none';
+        reportsOutput.style.display = 'none';
+        studentsList.innerHTML = '';
+    });
+
+    generateReportsButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const selectedCourseName = selectedCourse.value;
+
+        // Aquí puedes agregar la lógica para generar la lista de estudiantes matriculados
+        // y el reporte de matrícula para el curso seleccionado.
+        // Por ahora, solo mostraremos un mensaje ficticio.
+        const studentNames = ['Estudiante 1', 'Estudiante 2', 'Estudiante 3'];
+        studentsList.innerHTML = studentNames.map(student => `<li>${student}</li>`).join('');
+        reportsOutput.style.display = 'block';
+    });
+</script>
+
+
+<!-- Modal para la gestión de pagos -->
+<div class="modal" id="payments-modal">
+    <div class="modal-content">
+        <h3>Gestión de Pagos</h3>
+        <p>Seleccione el estudiante y el curso para realizar un pago:</p>
+        <form id="payments-form">
+            <label for="selected-student">Estudiante:</label>
+            <select id="selected-student">
+                <option value="estudiante1">Nombre del Estudiante 1</option>
+                <option value="estudiante2">Nombre del Estudiante 2</option>
+                <!-- Agrega más opciones de estudiantes aquí -->
+            </select>
+            <label for="selected-course">Curso:</label>
+            <select id="selected-course">
+                <option value="matematicas">Curso de Matemáticas</option>
+                <option value="historia">Curso de Historia</option>
+                <!-- Agrega más opciones de cursos aquí -->
+            </select>
+            <button class="button" id="make-payment-button">Realizar Pago</button>
+            <button class="button" id="close-payments-modal-button">Cerrar</button>
+            <div id="payment-confirmation" style="display: none; margin-top: 10px;">
+                <p>Pago realizado con éxito.</p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const showPaymentsModalButton = document.getElementById('show-payments-modal-button');
+    const paymentsModal = document.getElementById('payments-modal');
+    const closePaymentsModalButton = document.getElementById('close-payments-modal-button');
+    const makePaymentButton = document.getElementById('make-payment-button');
+    const paymentConfirmation = document.getElementById('payment-confirmation');
+
+    showPaymentsModalButton.addEventListener('click', () => {
+        paymentsModal.style.display = 'block';
+    });
+
+    closePaymentsModalButton.addEventListener('click', () => {
+        paymentsModal.style.display = 'none';
+        paymentConfirmation.style.display = 'none';
+    });
+
+    makePaymentButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const selectedStudentName = document.getElementById('selected-student').value;
+        const selectedCourseName = document.getElementById('selected-course').value;
+
+        // Simulación de pago exitoso
+        paymentConfirmation.style.display = 'block';
+    });
+</script>
+
+<!-- Modal para la comunicación -->
+<div class="modal" id="communication-modal">
+    <div class="modal-content">
+        <h3>Herramienta de Comunicación</h3>
+        <p>Seleccione el destinatario y escriba su mensaje:</p>
+        <form id="communication-form">
+            <label for="selected-recipient">Destinatario:</label>
+            <select id="selected-recipient">
+                <option value="estudiante1">Estudiante 1</option>
+                <option value="estudiante2">Estudiante 2</option>
+                <option value="profesor1">Profesor 1</option>
+                <option value="profesor2">Profesor 2</option>
+                <!-- Agrega más opciones de destinatarios aquí -->
+            </select>
+            <label for="message">Mensaje:</label>
+            <textarea id="message" rows="4"></textarea>
+            <button class="button" id="send-message-button">Enviar Mensaje</button>
+            <button class="button" id="close-communication-modal-button">Cerrar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const showCommunicationModalButton = document.getElementById('show-communication-modal-button');
+    const communicationModal = document.getElementById('communication-modal');
+    const closeCommunicationModalButton = document.getElementById('close-communication-modal-button');
+    const sendMessageButton = document.getElementById('send-message-button');
+
+    showCommunicationModalButton.addEventListener('click', () => {
+        communicationModal.style.display = 'block';
+    });
+
+    closeCommunicationModalButton.addEventListener('click', () => {
+        communicationModal.style.display = 'none';
+    });
+
+    sendMessageButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const selectedRecipient = document.getElementById('selected-recipient').value;
+        const messageContent = document.getElementById('message').value;
+
+        // Aquí puedes implementar la lógica para enviar el mensaje al destinatario seleccionado
+        // Por ejemplo, mostrar una confirmación de envío
+        alert(`Mensaje enviado a: ${selectedRecipient}\nContenido: ${messageContent}`);
+        communicationModal.style.display = 'none';
+    });
+</script>
+
+
+
+<!-- Modal para la gestión de requisitos previos -->
+<div class="modal" id="prerequisites-modal">
+    <div class="modal-content">
+        <h3>Gestión de Requisitos Previos</h3>
+        <p>Seleccione el estudiante y el curso para verificar los requisitos previos:</p>
+        <form id="prerequisites-form">
+            <label for="selected-student">Estudiante:</label>
+            <select id="selected-student">
+                <option value="estudiante1">Estudiante 1</option>
+                <option value="estudiante2">Estudiante 2</option>
+                <!-- Agrega más opciones de estudiantes aquí -->
+            </select>
+            <label for="selected-course">Curso:</label>
+            <select id="selected-course">
+                <option value="matematicas">Curso de Matemáticas</option>
+                <option value="historia">Curso de Historia</option>
+                <option value="ciencias">Curso de Ciencias</option>
+                <option value="literatura">Curso de Literatura</option>
+                <option value="arte">Curso de Arte</option>
+                <option value="musica">Curso de Música</option>
+                <!-- Agrega más opciones de cursos aquí -->
+            </select>
+            <button class="button" id="verify-prerequisites-button">Verificar Requisitos</button>
+            <button class="button" id="close-prerequisites-modal-button">Cerrar</button>
+            <div id="prerequisites-verification-result" style="display: none; margin-top: 10px;"></div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const showPrerequisitesModalButton = document.getElementById('show-prerequisites-modal-button');
+    const prerequisitesModal = document.getElementById('prerequisites-modal');
+    const closePrerequisitesModalButton = document.getElementById('close-prerequisites-modal-button');
+    const verifyPrerequisitesButton = document.getElementById('verify-prerequisites-button');
+    const prerequisitesVerificationResult = document.getElementById('prerequisites-verification-result');
+
+    showPrerequisitesModalButton.addEventListener('click', () => {
+        prerequisitesModal.style.display = 'block';
+    });
+
+    closePrerequisitesModalButton.addEventListener('click', () => {
+        prerequisitesModal.style.display = 'none';
+        prerequisitesVerificationResult.style.display = 'none';
+    });
+
+    verifyPrerequisitesButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const selectedStudentName = document.getElementById('selected-student').value;
+        const selectedCourseName = document.getElementById('selected-course').value;
+
+        // Aquí puedes implementar la lógica para verificar los requisitos previos
+        // Por ejemplo, mostrar si los requisitos se cumplen o no
+        const prerequisitesMet = true; // Cambia esto según tu lógica
+        if (prerequisitesMet) {
+            prerequisitesVerificationResult.innerHTML = 'Requisitos previos cumplidos.';
+        } else {
+            prerequisitesVerificationResult.innerHTML = 'Requisitos previos no cumplidos.';
+        }
+        prerequisitesVerificationResult.style.display = 'block';
+    });
+</script>
+
+
+
+<!-- Modal para la gestión de listas de espera -->
+<div class="modal" id="waitlists-modal">
+    <div class="modal-content">
+        <h3>Gestión de Listas de Espera</h3>
+        <p>Seleccione el curso para gestionar la lista de espera:</p>
+        <form id="waitlists-form">
+            <label for="selected-course">Curso:</label>
+            <select id="selected-course">
+                <option value="matematicas">Curso de Matemáticas</option>
+                <option value="historia">Curso de Historia</option>
+                <option value="ciencias">Curso de Ciencias</option>
+                <!-- Agrega más opciones de cursos aquí -->
+            </select>
+            <button class="button" id="manage-waitlist-button">Gestionar Lista de Espera</button>
+            <button class="button" id="close-waitlists-modal-button">Cerrar</button>
+            <div id="waitlist-management-result" style="display: none; margin-top: 10px;"></div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const showWaitlistsModalButton = document.getElementById('show-waitlists-modal-button');
+    const waitlistsModal = document.getElementById('waitlists-modal');
+    const closeWaitlistsModalButton = document.getElementById('close-waitlists-modal-button');
+    const manageWaitlistButton = document.getElementById('manage-waitlist-button');
+    const waitlistManagementResult = document.getElementById('waitlist-management-result');
+
+    showWaitlistsModalButton.addEventListener('click', () => {
+        waitlistsModal.style.display = 'block';
+    });
+
+    closeWaitlistsModalButton.addEventListener('click', () => {
+        waitlistsModal.style.display = 'none';
+        waitlistManagementResult.style.display = 'none';
+    });
+
+    manageWaitlistButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const selectedCourseName = document.getElementById('selected-course').value;
+
+        // Aquí puedes implementar la lógica para gestionar la lista de espera
+        // Por ejemplo, agregar estudiantes a la lista, asignar vacantes, etc.
+        // Luego, muestra un mensaje con los resultados de la gestión
+        const waitlistManaged = true; // Cambia esto según tu lógica
+        if (waitlistManaged) {
+            waitlistManagementResult.innerHTML = 'Lista de espera gestionada correctamente.';
+        } else {
+            waitlistManagementResult.innerHTML = 'No se pudo gestionar la lista de espera.';
+        }
+        waitlistManagementResult.style.display = 'block';
+    });
+</script>
+
+
+
+
+
+    <footer>
+        <p>Derechos de autor © 2023 Sistema de Matriculación</p>
+    </footer>
+
+   
+
+
+</body>
+</html>
+
